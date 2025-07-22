@@ -4,21 +4,26 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // Swagger setup
+
+  // Swagger setup Intialize
   const config = new DocumentBuilder()
-    .setTitle('Used Car Dealership API')
+    .setTitle('Car Dealership API')
     .setDescription('API for managing car inventory')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  // Enable graceful shutdown (handles SIGTERM, SIGINT)
+  // End Swagger setup
+
+  // Enable graceful shutdown
+  // handles SIGINT
   app.enableShutdownHooks();
-  // Optionally, add shutdown logic to perform cleanup tasks
+  // handles SIGTERM
   process.on('SIGTERM', () => {
-    // console.log('Received SIGTERM, shutting down gracefully...');
-    app.close();  // Ensure the app closes gracefully
+    app.close();
   });
+  //End Graceful shutdown
+  
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
