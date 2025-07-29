@@ -29,6 +29,14 @@ $ docker build -t car-dealership .
 
 # run docker image
 $ docker run -p 3000:3000 car-dealership
+
+# create and run docker container
+$ docker-compose -f car-dealership-nestjs-compose.yml up -d
+
+# remove docker container
+$ docker-compose -f car-dealership-nestjs-compose.yml down
+
+
 ```
 
 <p align="center">
